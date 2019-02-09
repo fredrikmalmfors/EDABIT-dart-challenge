@@ -13,7 +13,7 @@ def build_string(solutions):
     output = []
 
     for sol in solutions:
-        sol_str = "-".join(sol)
+        sol_str = "-".join(str(x) for x in sol)
         output.append(sol_str)
 
     return output
@@ -24,12 +24,12 @@ def inner(sections, darts, target, maximum):
 
     for score in sections:
         if score == target and darts == 1:
-            res.append([str(score)])
+            res.append([score])
         elif score <= target:
             next_arrow = inner(sections, darts-1, target-score, maximum)
             if next_arrow:
                 for elem in next_arrow:
-                    temp = [str(score)]
+                    temp = [score]
                     temp.extend(elem)
                     res.append(temp)
     if len(res) > 1:
